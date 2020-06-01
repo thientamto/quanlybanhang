@@ -6,26 +6,28 @@
   <section class="wrapper">
     <div class="table-agile-info">
       <div class="panel panel-default">
-        <div class="panel-heading">NHẬP KHO</div>
+
+        @if(session('thongbao'))
+        <div class="alert alert-success">
+          {{session('thongbao')}}
+        </div>
+        @endif
+        <div class="panel-heading">DANH SÁCH</div>
         <div class="row w3-res-tb">
           <div class="col-sm-5 m-b-xs"></div>
           <div class="col-sm-4"></div>
+
           <div class="col-sm-3">
             <div class="input-group">
-              <input type="text"  id="myInput" class="input-sm form-control" placeholder="Search">
+              <input type="text" id="myInput" class="input-sm form-control" placeholder="Tìm kiếm">
               <span class="input-group-btn">
                 <button class="btn btn-sm btn-default" type="button">Tìm</button>
               </span>
             </div>
           </div>
         </div>
+        
         <div class="table-responsive">
-          @if(session('thongbao'))
-          <div class="alert alert-success">
-            {{session('thongbao')}}
-          </div>
-          @endif
-
           <table class="table table-striped b-t b-light">
             <thead>
               <tr>
@@ -34,39 +36,24 @@
                     <input type="checkbox"><i></i>
                   </label>
                 </th>
-                <th>ID</th>
+                <th>Tên danh mục</th>
                 <th>Tên tổ chức</th>
-                <th>Tổng giá nhập</th>
-                <th>Số tiền giảm</th>
-                <th>Tiền trả NCC</th>
-                <th>Ngày nhập</th>
-                <th>Tình trạng</th>
-                <th>Tên NCC</th>
                 <th>Ghi chú</th>
                 <th style="width:30px;"></th>
               </tr>
             </thead>
             <tbody id="myTable">
-              @foreach($nhapkho as $nk)
+              @foreach($nhomsanpham as $nsp )
               <tr>
                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>{{$nk->idnhap}}</td>
-                <td>{{$nk->tochuc->tentc}}</td>
-                <td>{{$nk->tonggia}}</td>
-                <td>{{$nk->giamgia}}</td>
-                <td>{{$nk->tientrancc}}</td>
-                <td>{{$nk->ngaynhap}}</td>
-                <td>{{$nk->tinhtrang}}</td>
-                <td>{{$nk->nhacungcap['tenncc']}}</td>
-                <td>{{$nk->ghichu}}</td>
+                <td>{{$nsp->tennsp}}</td>
+                <td>{{$nsp->tochuc->tentc}}</td>
+                <td>{{$nsp->ghichu}}</td>
                 <td>
-                  <a href="{{ route('chi-tiet-nhap', $nk->idnhap) }}" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-detail-square-o text-success text-active"></i>
-                  </a>
-                  <a href="admin/nhapkho/sua/{{$nk->idnhap}}" class="active styling-edit" ui-toggle-class="">
+                  <a href="admin/nhomsanpham/sua/{{$nsp->idnsp}}" class="active styling-edit" ui-toggle-class="">
                     <i class="fa fa-pencil-square-o text-success text-active"></i>
                   </a>
-                  <a onclick="return confirm('Bạn có muốn xóa?')" href="admin/nhapkho/xoa/{{$nk->idnhap}}" class="active styling-edit" ui-toggle-class="">
+                  <a onclick="return confirm('Bạn có muốn xóa?')" href="admin/nhomsanpham/xoa/{{$nsp->idnsp}}" class="active styling-edit" ui-toggle-class="">
                     <i class="fa fa-times text-danger text"></i>
                   </a>
                 </td>
@@ -75,6 +62,22 @@
             </tbody>
           </table>
         </div>
+        <footer class="panel-footer">
+          <div class="row">
+
+            <div class="col-sm-5 text-center">
+            </div>
+            <div class="col-sm-7 text-right text-center-xs">
+              <ul class="pagination pagination-sm m-t-none m-b-none">
+                <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+                <li><a href="">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   </section>

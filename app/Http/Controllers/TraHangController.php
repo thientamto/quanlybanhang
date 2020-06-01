@@ -15,7 +15,11 @@ class TraHangController extends Controller
     //
     public function getDanhSach()
     {
-	    $trahang = TraHang::all();
+	    $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $trahang = TraHang::where('idtc', $tochuc->idtc)->get();
 	    return view('admin.trahang.danhsach',['trahang' => $trahang]);
 	}
 

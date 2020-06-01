@@ -13,7 +13,11 @@ class KhachHangController extends Controller
 {
     public function getDanhSach()
     {
-        $khachhang = KhachHang::all();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $khachhang = KhachHang::where('idtc', $tochuc->idtc)->get();
         return view('admin/khachhang/danhsach', ['khachhang' => $khachhang]);
     }
 

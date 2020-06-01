@@ -17,13 +17,21 @@ class CongNoKHController extends Controller
     ////
     public function getDanhSach()
     {
-        $congnokh = CongNoKH::all();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $congnokh = CongNoKH::where('idtc', $tochuc->idtc)->get();
         return view('admin.congnokh.danhsach',['congnokh' => $congnokh]);
     }
     // cong no ncc
     public function getDanhSachNCC()
     {
-	    $congnoncc = \App\CongNoNCC::get();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $congnoncc = \App\CongNoNCC::where('idtc', $tochuc->idtc)->get();
         // return $congnoncc;
 	    return view('admin.congnoncc.danhsach',['congnoncc' => $congnoncc]);
 	}

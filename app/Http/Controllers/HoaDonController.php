@@ -19,7 +19,7 @@ class HoaDonController extends Controller
       $id = Auth::id();
       $check_user = User::find($id);
       $tochuc = ToChuc::where('id_user', $check_user->id)->first();
-      // return $tochuc->idtc;
+      //return $tochuc->idtc;
       $hoadon = HoaDon::where('idtc', $tochuc->idtc)->get();
       return view('admin.hoadon.danhsach',['hoadon' => $hoadon]);
    }

@@ -13,7 +13,11 @@ class KhoController extends Controller
 {
     public function getDanhSach()
     {
-        $kho = Kho::all();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $kho = Kho::where('idtc', $tochuc->idtc)->get();
         // DB::table('tochuc')->select('tentc')->get();
         return view('admin.kho.danhsach', ['kho' => $kho]);
     }

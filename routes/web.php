@@ -234,14 +234,14 @@ Route::group(['prefix'=>'admin'],function()
 	});
 
 	// Nhóm sản phẩm
-	Route::group(['prefix' => 'nhomsanpham'], function () {
-        Route::get('danhmuc', 'NhomSanPhamController@getDanhMuc');
-        Route::get('themdanhmuc', 'NhomSanPhamController@themdanhmuc');
-        Route::get('suadanhmuc/{idnsp}', 'NhomSanPhamController@suadanhmuc');
-        Route::get('xoadanhmuc/{idnsp}', 'NhomSanPhamController@xoadanhmuc');
-        Route::get('alldanhmuc', 'NhomSanPhamController@alldanhmuc');
-        Route::post('luudanhmuc', 'NhomSanPhamController@luudanhmuc');
-        Route::post('capnhatdanhmuc/{idnsp}', 'NhomSanPhamController@capnhatdanhmuc');
+	Route::group(['prefix' => 'nhomsanpham'], function() 
+	{
+        Route::get('danhsach','NhomSanPhamController@getDanhSach');
+		Route::get('them','NhomSanPhamController@getThem');
+		Route::post('them','NhomSanPhamController@postThem');
+		Route::get('sua/{idnsp}','NhomSanPhamController@getSua');
+		Route::post('sua/{idnsp}','NhomSanPhamController@postSua');
+		Route::get('xoa/{idnsp}','NhomSanPhamController@getXoa');
     });
 
 	// Nhân viên

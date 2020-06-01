@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            SỬA THÔNG TIN NHÂN VIÊN
+                            SỬA NHÂN VIÊN
                         </header>
 
                         <div class="panel-body">
@@ -67,11 +67,12 @@
 
                                     <div class="form-group">
                                         <label>Tên tổ chức</label>
-                                        <select name="ToChuc" class="form-control input-sm m-bot15">
-                                            @foreach($tochuc as $tc)
-                                            <option value="{{$tc->idtc}}">{{$tc->tentc}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="hidden" name="ToChuc" value="{{
+                                        $tochuc->idtc
+                                    }}">
+                                        <input type="text" disabled="" class="form-control" value="{{
+                                        $tochuc->tentc
+                                    }}">
                                     </div>
 
                                     <div class="form-group">

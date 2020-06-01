@@ -56,7 +56,6 @@
                 <td>{{$nv->gioitinh}}</td>
                 <td>{{$nv->email}}</td>
                 <td>{{$nv->tochuc->tentc}}</td>
-
                 <td>{{$nv->ghichu}}</td>
                 <td>
                   <a href="admin/nhanvien/sua/{{$nv->idnv}}" class="active styling-edit" ui-toggle-class="">

@@ -3,13 +3,14 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-                <!-- <li>
+                <li>
                     <a class="active" href="admin">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
-                </li> -->
-                <li class="sub-menu">
+                </li>
+                
+                <!-- <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
                         <span>Tổ Chức</span>
@@ -18,7 +19,8 @@
                         <li><a href="admin/tochuc/danhsach">Danh sách</a></li>
                         <li><a href="admin/tochuc/them">Thêm</a></li>
                     </ul>
-                </li>
+                </li> -->
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
@@ -28,16 +30,18 @@
                         <li><a href="admin/banhang/banhang">Bán hàng</a></li>
                     </ul>
                 </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
                         <span>Nhóm sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="admin/nhomsanpham/alldanhmuc">Danh sách</a></li>
-                        <li><a href="admin/nhomsanpham/themdanhmuc">Thêm</a></li>
+                        <li><a href="admin/nhomsanpham/danhsach">Danh sách</a></li>
+                        <li><a href="admin/nhomsanpham/them">Thêm</a></li>
                     </ul>
                 </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
@@ -48,6 +52,7 @@
                         <!-- <li><a href="admin/sanpham/them">Thêm</a></li> -->
                     </ul>
                 </li>
+                
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
@@ -216,7 +221,7 @@
                     </ul>
                 </li>
 
-                <li class="sub-menu">
+                <!-- <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>
                         <span>Kho</span>
@@ -225,7 +230,7 @@
                         <li><a href="admin/kho/danhsach">Danh sách</a></li>
                         <li><a href="admin/kho/them">Thêm</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tasks"></i>

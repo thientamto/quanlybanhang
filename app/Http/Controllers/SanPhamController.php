@@ -9,14 +9,20 @@ use App\NhaCungCap;
 use App\DonViTinh;
 use App\NhomSanPham;
 use App\SanPham;
+use App\ToChuc;
+use App\User;
+use Auth, Hash;
 
 class SanPhamController extends Controller
 {
     public function getDanhSach()
     {
-        
-        $sanpham = SanPham::all();
-        return view('admin.sanpham.danhsach', ['sanpham' => $sanpham]);
+        $id = Auth::id();
+        $check_user = User::find($id);
+        $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+          //return $tochuc->idtc;
+        $sanpham = SanPham::where('idtc', $tochuc->idtc)->get();
+        return view('admin.sanpham.danhsach', ['sanpham' => $sanpham,'tochuc' => $tochuc]);
     }
     public function getThem()
     {

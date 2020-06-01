@@ -58,8 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>Tạo Tài Khoản</h2>
 			<form action="{{route('dangky')}}" method="post" enctype="multipart/form-data">
 				{{csrf_field()}}
-<<<<<<< HEAD
-				Tên Tổ Chức: <input type="text" class="ggg" name="nametc" placeholder="Tên tổ chức" >
+				Tên Tổ Chức: <input type="text" class="ggg" name="tentc" placeholder="Tên tổ chức" >
 				Tên Người Quản Lý: <input type="text" class="ggg" name="name" placeholder="Tên người quản lý" >
 				Địa Chỉ: <input type="text" class="ggg" name="address" placeholder="Địa chỉ" >
                 Số Điện Thoại: <input type="text" class="ggg" name="sdt" placeholder="Số điện thoại" >
@@ -88,10 +87,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				Nhập lại password: <input type="password" class="ggg" name="re_password" placeholder="Nhập lại password"> -->
 				<!-- <span><input type="checkbox"> Nhớ mật khẩu</span>
 				<h6><a href="#"> Quên mật khẩu? </a></h6> -->
-				Tên tổ chức: <input type="text" class="ggg" name="nametc" placeholder="Nhập tên tổ chức" >
+				<!-- Tên tổ chức: <input type="text" class="ggg" name="tentc" placeholder="Nhập tên tổ chức" > -->
 				Email: <input type="email" class="ggg" name="email" placeholder="Nhập email" >
-				Tên người quản lý: <input type="text" class="ggg" name="name" placeholder="Nhập tên người quản lý" >
-				Địa chỉ: <input type="text" class="ggg" name="address" placeholder="Nhập địa chỉ" >
+				<!-- Tên người quản lý: <input type="text" class="ggg" name="name" placeholder="Nhập tên người quản lý" >
+				Địa chỉ: <input type="text" class="ggg" name="address" placeholder="Nhập địa chỉ" > -->
 				
 
 

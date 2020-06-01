@@ -189,6 +189,7 @@
     </ul>
     <!--  notification end -->
 </div>
+
 <div class="top-nav clearfix">
     <!--search & user info start-->
     <ul class="nav pull-right top-menu">

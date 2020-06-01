@@ -15,7 +15,11 @@ class HoaDonNCCController extends Controller
     //
     public function getDanhSach()
     {
-	    $hoadonncc = HoaDonNCC::all();
+	    $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $hoadonncc = HoaDonNCC::where('idtc', $tochuc->idtc)->get();
         // print_r($hoadonncc->toArray());
 	    return view('admin.hoadonncc.danhsach',['hoadonncc' => $hoadonncc]);
 	}

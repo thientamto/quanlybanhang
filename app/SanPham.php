@@ -25,4 +25,9 @@ class SanPham extends Model
     {
         return $this->belongsTo('App\NhaCungCap', 'idncc', 'idncc');
     }
+
+    public function tochuc()
+     {
+        return $this->belongsTo('App\ToChuc','idtc','idtc');
+     }
 }

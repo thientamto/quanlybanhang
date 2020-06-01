@@ -55,10 +55,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 				<input type="submit" value="Đăng Nhập" name="login">
 			</form>
+
+			<p><a href="dangky">Tạo tài khoản</a></p>
 			@if(Auth::check())
 				
 			@endif
-			<p>Quên tài khoản?<a href="registration.html">Tạo tài khoản</a></p>
 		</div>
 	</div>
 	<script src="admin_asset/js/bootstrap.js"></script>

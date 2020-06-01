@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 use App\NhanVien;
 use App\ToChuc;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Auth, Hash;
+
 
 class NhanVienController extends Controller
 {
     public function getDanhSach()
     {
-        $nhanvien = NhanVien::all();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $nhanvien = NhanVien::where('idtc', $tochuc->idtc)->get();
         return view('admin/nhanvien/danhsach', ['nhanvien' => $nhanvien]);
     }
 
@@ -81,7 +85,9 @@ class NhanVienController extends Controller
     public function getSua($idnv)
     {
         $nhanvien = NhanVien::find($idnv);
-        $tochuc = ToChuc::all();
+        $id = Auth::id();
+        $check_user = User::find($id);
+        $tochuc = ToChuc::where('id_user', $check_user->id)->first();
         $user = User::all();
         return view('admin.nhanvien.sua', ['nhanvien' => $nhanvien, 'tochuc' => $tochuc, 'user' => $user]);
     }

@@ -15,7 +15,11 @@ class NhapKhoController extends Controller
     //
     public function getDanhSach()
     {
-	    $nhapkho = NhapKho::orderBy('idnhap' ,'desc')->get();
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $nhapkho = NhapKho::where('idtc', $tochuc->idtc)->get();
 	    return view('admin.nhapkho.danhsach',['nhapkho' => $nhapkho]);
 	}
 
@@ -238,6 +242,7 @@ class NhapKhoController extends Controller
                 $sanpham->gianhap = $value['gianhap'];
                 $sanpham->idncc = $req->idncc;
                 $sanpham->soluongton = $check_sp->soluongton + $value['soluong'];
+                $sanpham->idtc = $req->idtc;
                 $sanpham->save();
 
                 $chitietnhap = new \App\ChiTietNhap;
@@ -259,6 +264,7 @@ class NhapKhoController extends Controller
                 $sanpham->gianhap = $value['gianhap'];
                 $sanpham->idncc = $req->idncc;
                 $sanpham->soluongton = $value['soluong'];
+                $sanpham->idtc = $req->idtc;
                 $sanpham->save();
 
                 $chitietnhap = new \App\ChiTietNhap;

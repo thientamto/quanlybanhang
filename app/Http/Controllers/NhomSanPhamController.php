@@ -3,90 +3,98 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 use App\ToChuc;
 use App\NhomSanPham;
-
-session_start();
+use App\User;
+use Auth, Hash;
 
 class NhomSanPhamController extends Controller
 {
-    public function getDanhMuc()
+    public function getDanhSach()
     {
-        $nhomsanpham = NhomSanPham::all();
-        return view('admin.nhomsanpham.alldanhmuc');
-    }
-    public function themdanhmuc()
-    {
-        $tochuc = ToChuc::all();
-        return view('admin.nhomsanpham.themdanhmuc', ['tochuc' => $tochuc]);
-    }
-    public function alldanhmuc()
-    {
-        $alldanhmuc = DB::table('nhomsanpham')->get();
-        $quanlyalldanhmuc = view('admin/nhomsanpham/alldanhmuc')->with('alldanhmuc', $alldanhmuc);
-        return view('admin.layout.index')->with('admin/nhomsanpham/alldanhmuc', $quanlyalldanhmuc);
-        return view('admin.nhomsanpham.alldanhmuc');
+        $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $nhomsanpham = NhomSanPham::where('idtc', $tochuc->idtc)->get();
+        return view('admin/nhomsanpham/danhsach', ['nhomsanpham' => $nhomsanpham]);
     }
 
-    public function luudanhmuc(Request $request)
+    public function getThem()
+    {
+        $id = Auth::id();
+        $check_user = User::find($id);
+        $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+        $user = User::all();
+        return view('admin.nhomsanpham.them', ['tochuc' => $tochuc, 'user' => $user]);
+    }
+
+    public function postThem(Request $request)
     {
         $this->validate(
             $request,
             [
-                'tennsp' => 'required|unique:NhomSanPham,tennsp|min:3|max:200',
+                'tennsp' => 'required|unique:NhanVien,tennv|min:1|max:100',
                 'ToChuc' => 'required'
             ],
             [
-                'tennsp.required' => 'Bạn chưa nhập tên danh mục',
-                'tennsp.unique' => 'Tên danh mục đã tồn tại',
-                'tennsp.min' => 'Tên danh mục phải có độ dài từ 3 đến 200 ký tự',
-                'tennsp.max' => 'Tên danh mục phải có độ dài từ 3 đến 200 ký tự',
+                'tennsp.required' => 'Bạn chưa nhập tên nhóm sản phẩm',
+                'tennsp.unique' => 'Tên nhóm sản phẩm đã tồn tại',
+                'tennsp.min' => 'Tên nhóm sản phẩm phải dài hơn 1 ký tự',
+                'tennv.max' => 'Tên nhóm sản phẩm phải ngắn hơn 100 ký tự',
 
-                'ToChuc.required' => 'Bạn chưa chọn tổ chức'
+                'ToChuc.required' => 'Bạn chưa nhập ngày sinh',
             ]
         );
-        $array =[
-            'tennsp'=>$request->tennsp,
-            'idtc'=>$request->ToChuc,
-            'ghichu'=>$request->ghichu,
-        ];
-        
-        $table = NhomSanPham::create($array);
-        return redirect('admin/nhomsanpham/alldanhmuc')->with('thongbao', 'Thêm thành công');
+
+        $nhomsanpham = new NhomSanPham;
+        $nhomsanpham->tennsp = $request->tennsp;
+        $nhomsanpham->idtc = $request->ToChuc;
+        $nhomsanpham->ghichu = $request->ghichu;
+        $nhomsanpham->save();
+        return redirect('admin/nhomsanpham/danhsach')->with('thongbao', 'Thêm thành công');
     }
 
-    public function suadanhmuc($idnsp)
+    public function getSua($idnsp)
     {
-        $suadanhmuc = DB::table('nhomsanpham')->where('idnsp', $idnsp)->get();
-        $quanlysuadanhmuc = view('admin/nhomsanpham/suadanhmuc')->with('suadanhmuc', $suadanhmuc);
-        return view('admin.layout.index')->with('admin.nhomsanpham.alldanhmuc', $quanlysuadanhmuc);
-        return view('admin.nhomsanpham.alldanhmuc');
+        $nhomsanpham = NhomSanPham::find($idnsp);
+        $id = Auth::id();
+        $check_user = User::find($id);
+        $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+        $user = User::all();
+        return view('admin.nhomsanpham.sua', ['nhomsanpham' => $nhomsanpham, 'tochuc' => $tochuc, 'user' => $user]);
     }
 
-    public function capnhatdanhmuc(Request $request, $idnsp)
+    public function postSua(Request $request, $idnsp)
     {
+    	$nhomsanpham = NhomSanPham::find($idnsp);
         $this->validate(
             $request,
             [
-                'tennsp' => 'required'
+                'tennsp' => 'required|unique:NhanVien,tennv|min:1|max:100',
+                'ToChuc' => 'required'
             ],
             [
-                'tennsp.required' => 'Bạn chưa nhập tên danh mục'
+                'tennsp.required' => 'Bạn chưa nhập tên nhóm sản phẩm',
+                'tennsp.unique' => 'Tên nhóm sản phẩm đã tồn tại',
+                'tennsp.min' => 'Tên nhóm sản phẩm phải dài hơn 1 ký tự',
+                'tennv.max' => 'Tên nhóm sản phẩm phải ngắn hơn 100 ký tự',
+
+                'ToChuc.required' => 'Bạn chưa nhập ngày sinh',
             ]
         );
 
-        $nhomsanpham = NhomSanPham::find($idnsp);
         $nhomsanpham->tennsp = $request->tennsp;
+        $nhomsanpham->idtc = $request->ToChuc;
         $nhomsanpham->ghichu = $request->ghichu;
         $nhomsanpham->save();
-        return redirect('admin/nhomsanpham/alldanhmuc')->with('thongbao', 'Cập nhật thành công');
+        return redirect('admin/nhomsanpham/danhsach')->with('thongbao', 'Sửa thành công');
     }
-    public function xoadanhmuc($idnsp)
+
+    public function getXoa($idnsp)
     {
-        DB::table('nhomsanpham')->where('idnsp', $idnsp)->delete();
-        return redirect('admin/nhomsanpham/alldanhmuc')->with('thongbao', 'Xóa thành công');
+        $nhomsanpham = NhomSanPham::find($idnsp);
+        $nhomsanpham->delete();
+        return redirect('admin/nhomsanpham/danhsach')->with('thongbao', 'Xóa thành công');
     }
 }

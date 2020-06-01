@@ -49,6 +49,7 @@
                                 <th>Giá nhập</th>
                                 <th>Hình ảnh</th>
                                 <th>Số lượng tồn</th>
+                                <th>Tên tổ chức</th>
                                 <th>Ghi chú</th>
                                 <th style="width:30px;"></th>
                             </tr>
@@ -65,6 +66,7 @@
                                 <td>{{$sp->gianhap}}</td>
                                 <td><img src="{{$sp->hinh}}" alt="" style="width:50px; height:50px"></td>
                                 <td>{{$sp->soluongton}}</td>
+                                <td>{{$sp['tentc']}}</td>
                                 <td>{{$sp->ghichu}}</td>
                                 <td>
                                     <a href="{{URL::to('admin/sanpham/sua/'.$sp->idsp)}}" class="active styling-edit" ui-toggle-class="">

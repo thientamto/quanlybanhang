@@ -14,7 +14,11 @@ class NhaCungCapController extends Controller
     //
     public function getDanhSach()
     {
-	    $nhacungcap = NhaCungCap::all();
+	    $id = Auth::id();
+      $check_user = User::find($id);
+      $tochuc = ToChuc::where('id_user', $check_user->id)->first();
+      //return $tochuc->idtc;
+      $nhacungcap = NhaCungCap::where('idtc', $tochuc->idtc)->get();
 	    return view('admin.nhacungcap.danhsach',['nhacungcap' => $nhacungcap]);
 	}
 

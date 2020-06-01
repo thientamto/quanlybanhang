@@ -43,6 +43,7 @@ class AdminController extends Controller
         );
 
         $user = new User;
+        $user->id = $user->id;
     	$user->sdt = $req->sdt;
     	$user->password = Hash::make($req->password);
     	$user->name = $req->name;
@@ -50,13 +51,13 @@ class AdminController extends Controller
 
     	$tochuc = new ToChuc;
     	$tochuc->id_user = $user->id;
-    	$tochuc->tentc = $req->nametc;
+    	$tochuc->tentc = $req->tentc;
     	$tochuc->hoten = $req->name;
     	$tochuc->diachi = $req->address;
     	$tochuc->sdt = $req->sdt;
     	$tochuc->save();
 
-    	return redirect()->back()->with('thongbao', 'Tạo thành công');
+    	return redirect()->route('login')->with('thongbao', 'Tạo thành công');
     }
 
     public function postlogin(Request $req)
